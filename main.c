@@ -14,10 +14,16 @@
 */
 /*
 ====================================================================================================
-Compilation note :  (avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Wall -L -Os C11_4.c
-                    -o C11_4.elf liblcd.a) This statement needs to be added when compiling in
-                    order for the llcd.a to be included when compiliing or else the compiler will
-                    produce the undefined variable error.
+Compilation note :  (avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Wall -L -Os main.c \
+                    -o main.elf liblcd.a
+                    avr-objcopy -O ihex main.elf main.hex
+                    avrdude -c c232hm -p m644p -U flash:w:main.hex 
+                    # This requires the C232hm programmer cable and a patched avrdude version 6.3
+                    )
+                    
+                    This statement needs to be added when compiling in order for the llcd.a to be 
+                    included when compiliing or else the compiler will produce the undefined 
+                    variable error.
 ====================================================================================================
 */
 #include <avr/io.h>
